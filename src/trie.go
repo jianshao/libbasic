@@ -49,18 +49,19 @@ func (t *TrieRoot) AddNode(key []string, data interface{}) (bool, error, interfa
 	return true, nil, nil
 }
 
-func (t *TrieRoot) Delete(key []string)  {
+func (t *TrieRoot) Delete(key []string) (bool, error) {
 	node := t.root
 	for i := 0; i < len(key); i++ {
 		if node.children[key[i]] != nil {
 			node = node.children[key[i]]
 		} else {
 			//如果中间有某个节点不存在，则要删除的节点一定不存在
-			return
+			return false, nil
 		}
 	}
 	/* 只需要将叶子节点标识去掉，该节点就不会被当作叶子节点使用，内容也不会被访问 */
 	node.bIsLeafNode = false
+	return true, nil
 }
 
 func (t *TrieRoot) Update(key []string, newData interface{}) (bool, error) {
@@ -101,3 +102,7 @@ func (t *TrieRoot) Search(key []string) (interface{}, error) {
 	return data, nil
 }
 
+func (t *TrieRoot)DeleteTrie() (bool, error) {
+
+	return true, nil
+}
