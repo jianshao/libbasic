@@ -1,12 +1,12 @@
 package test
 
 import (
-	libbasic "github.com/libbasic/src"
+	"github.com/libbasic/datastruct"
 	"testing"
 )
 
 func TestTrie_Add(t *testing.T)  {
-	trie := libbasic.NewTrie()
+	trie := datastruct.NewTrie()
 	AssertNotNil(t, trie)
 
 	/* 输入参数错误类型 */
@@ -41,7 +41,7 @@ func TestTrie_Add(t *testing.T)  {
 }
 
 func TestTrie_Delete(t *testing.T)  {
-	trie := libbasic.NewTrie()
+	trie := datastruct.NewTrie()
 	AssertNotNil(t, trie)
 
 	/* 参数输入错误类型 */
@@ -72,7 +72,7 @@ func TestTrie_Delete(t *testing.T)  {
 }
 
 func TestTrie_Search(t *testing.T)  {
-	trie := libbasic.NewTrie()
+	trie := datastruct.NewTrie()
 	AssertNotNil(t, trie)
 
 	/* 输入参数错误 */

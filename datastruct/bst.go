@@ -1,23 +1,26 @@
 package datastruct
 
-import "fmt"
-
-type compare func(a interface{}, b interface{}) (int)
+import (
+	"fmt"
+	"github.com/libbasic/common"
+)
 
 type bstNode struct{
-	p *bstNode
-	l *bstNode
-	r *bstNode
-	data interface{}
+	p *bstNode            /* 父节点，根节点的为nil */
+	l *bstNode            /* 左子树 */
+	r *bstNode            /* 右子树 */
+	data interface{}      /* 用户保存的数据 */
 }
 
+/* bst中 */
 type Bst struct{
-	root *bstNode
-	cmp compare
-	nodeCount int
+	root *bstNode         /* bst的根节点，初始时为nil */
+	cmp common.Compare    /* 比较函数，由用户指定 */
+	nodeCount int         /* 当前bst中节点数 */
 }
 
-func NewBst(cmp compare) *Bst {
+/* 对外接口：初始化一个bst */
+func NewBst(cmp common.Compare) *Bst {
 	return &Bst{
 		root:nil,
 		cmp: cmp,
@@ -34,6 +37,7 @@ func newBstNode(p *bstNode, data interface{}) *bstNode {
 	}
 }
 
+/* 对外接口：增加节点 */
 func (b *Bst)Add(data interface{}) (bool, error) {
 	if b.root == nil {
 		b.root = newBstNode(nil, data)
@@ -62,6 +66,7 @@ func (b *Bst)Add(data interface{}) (bool, error) {
 	return true, nil
 }
 
+/* 找出最大节点，查找的范围中包括传入的根节点。最大节点在最右节点 */
 func findBiggestNode(root *bstNode) (*bstNode, error) {
 	if root == nil {
 		return nil, nil
@@ -115,10 +120,10 @@ func (b *Bst)Delete(data interface{}) {
 	}
 }
 
+/* 根据用户数据查找对应节点 */
 func (b *Bst)findTheNode(data interface{}) (*bstNode, error) {
 
 	for root := b.root; root != nil; {
-
 		r := b.cmp(root.data, data)
 		if r == 0 {
 			return root, nil
@@ -139,6 +144,8 @@ func (b *Bst)IsExist(data interface{}) bool {
 	return true
 }
 
+
+/* 以中序遍历，即得有序数组 */
 func mid(root *bstNode, r []interface{}) {
 	if root == nil {
 		return
@@ -149,6 +156,7 @@ func mid(root *bstNode, r []interface{}) {
 	mid(root.r, r)
 }
 
+/* 对外接口：遍历bst获得有序数组。返回的是接口数组，使用之前需要转换成具体类型 */
 func (b *Bst)GetSortedList() ([]interface{}, error) {
 	r := make([]interface{}, b.nodeCount)
 	mid(b.root, r)

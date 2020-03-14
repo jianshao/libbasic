@@ -1,17 +1,20 @@
 package algorithm
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/libbasic/datastruct"
+)
 
 type Lru struct {
-	history *DLinkList
-	keys map[string]interface{}
-	maxNode int
-	currNodeCount int
+	history *datastruct.DLinkList       /* 历史访问链表 */
+	keys map[string]interface{}         /* 节点hash map */
+	maxNode int                         /* 节点数上限 */
+	currNodeCount int                   /* 当前节点数 */
 }
 
-func NewLru() (*Lru) {
+func NewLru() *Lru {
 	return &Lru{
-		history:NewDLinkList(),
+		history:datastruct.NewDLinkList(),
 		keys:make(map[string]interface{}),
 	}
 }

@@ -6,10 +6,11 @@ import (
 )
 
 type trieNode struct {
-	data interface{}
-	children map[string]*trieNode
-	bIsLeafNode bool
+	data interface{}                /* 用户数据 */
+	children map[string]*trieNode   /* 子节点 */
+	bIsLeafNode bool                /* 叶子节点标识，只有该节点是叶子节点时才能使用用户数据 */
 }
+
 
 type TrieRoot struct {
 	root *trieNode
@@ -55,7 +56,7 @@ func (t *TrieRoot) Delete(key []string) (bool, error) {
 		if node.children[key[i]] != nil {
 			node = node.children[key[i]]
 		} else {
-			//如果中间有某个节点不存在，则要删除的节点一定不存在
+			/* 如果中间有某个节点不存在，则要删除的节点一定不存在 */
 			return false, nil
 		}
 	}

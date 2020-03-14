@@ -1,22 +1,14 @@
 package test
 
 import (
-	libbasic "github.com/libbasic/src"
+	"github.com/libbasic/common"
+	"github.com/libbasic/datastruct"
 	"testing"
 )
 
-func compare(a, b interface{}) int {
-	if a.(int) > b.(int) {
-		return 1
-	} else if a.(int) == b.(int) {
-		return 0
-	} else {
-		return -1
-	}
-}
 
 func TestBst_Add(t *testing.T)  {
-	b := libbasic.NewBst(compare)
+	b := datastruct.NewBst(common.CmpInt)
 	AssertNotNil(t, b)
 
 	r, err := b.Add(nil)

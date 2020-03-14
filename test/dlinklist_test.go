@@ -1,12 +1,12 @@
 package test
 
 import (
-	libbasic "github.com/libbasic/src"
+	"github.com/libbasic/datastruct"
 	"testing"
 )
 
 func TestDLinkList_New(t *testing.T)  {
-	d := libbasic.NewDLinkList()
+	d := datastruct.NewDLinkList()
 	AssertNotNil(t, d)
 
 	data, err := d.Get(1)
@@ -26,7 +26,7 @@ func TestDLinkList_New(t *testing.T)  {
 }
 
 func TestDLinkListAdd(t *testing.T)  {
-	d := libbasic.NewDLinkList()
+	d := datastruct.NewDLinkList()
 	AssertNotNil(t, d)
 
 	r, err := d.Add2Head(nil)
@@ -89,7 +89,7 @@ func TestDLinkListAdd(t *testing.T)  {
 }
 
 func TestDLinkList_Get(t *testing.T)  {
-	d := libbasic.NewDLinkList()
+	d := datastruct.NewDLinkList()
 	AssertNotNil(t, d)
 
 	r, err := d.Append(1)

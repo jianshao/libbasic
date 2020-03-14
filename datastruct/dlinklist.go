@@ -5,11 +5,12 @@ import (
 )
 
 type dLinkListNode struct {
-	p *dLinkListNode
-	n *dLinkListNode
-	data interface{}
+	p *dLinkListNode       /* 前驱节点 */
+	n *dLinkListNode       /* 后继节点 */
+	data interface{}       /* 用户数据 */
 }
 
+/* 双向链表 */
 type DLinkList struct {
 	head *dLinkListNode
 	tail *dLinkListNode
