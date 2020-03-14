@@ -1,4 +1,4 @@
-package libbasic
+package datastruct
 
 
 import (
