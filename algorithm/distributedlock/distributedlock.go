@@ -1,4 +1,4 @@
-package libbasic
+package distributedlock
 
 import (
 	"fmt"

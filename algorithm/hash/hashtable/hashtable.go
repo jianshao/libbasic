@@ -1,4 +1,4 @@
-package datastruct
+package hashtable
 
 import (
 	"fmt"
@@ -9,6 +9,9 @@ import (
 const (
 	HashTableInvalidOffset = -1
 )
+
+
+
 
 type GetOffsetFromKey func(key interface{}, hashMask int) int
 

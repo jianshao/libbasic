@@ -1,4 +1,4 @@
-package datastruct
+package dlist
 
 import (
 	"fmt"

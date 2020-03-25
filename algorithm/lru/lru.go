@@ -1,21 +1,21 @@
-package algorithm
+package lru
 
 import (
 	"fmt"
-	"github.com/libbasic/datastruct"
+	"github.com/libbasic/datastruct/list/dlist"
 )
 
 type Lru struct {
-	history *datastruct.DLinkList       /* 历史访问链表 */
-	keys map[string]interface{}         /* 节点hash map */
-	maxNode int                         /* 节点数上限 */
-	currNodeCount int                   /* 当前节点数 */
+	history *dlist.DLinkList    /* 历史访问链表 */
+	keys map[string]interface{} /* 节点hash map */
+	maxNode int                 /* 节点数上限 */
+	currNodeCount int           /* 当前节点数 */
 }
 
 func NewLru() *Lru {
 	return &Lru{
-		history:datastruct.NewDLinkList(),
-		keys:make(map[string]interface{}),
+		history: dlist.NewDLinkList(),
+		keys:    make(map[string]interface{}),
 	}
 }
 

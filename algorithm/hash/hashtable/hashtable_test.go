@@ -1,14 +1,14 @@
-package test
+package hashtable
 
 import (
-	"github.com/libbasic/datastruct"
+	"github.com/libbasic/test"
 	"reflect"
 	"testing"
 )
 
 func intGetOffset(key interface{}, hashMask int) int {
 	if reflect.TypeOf(key).Kind() != reflect.Int {
-		return datastruct.HashTableInvalidOffset
+		return HashTableInvalidOffset
 	}
 	k := key.(int)
 	return k % hashMask
@@ -48,8 +48,8 @@ var tests_Delete = []hashTableTest{
 }
 
 func TestHashTable_Add(t *testing.T)  {
-	h := datastruct.NewHashTable(1024, intGetOffset)
-	AssertNotNil(t, h)
+	h := NewHashTable(1024, intGetOffset)
+	test.AssertNotNil(t, h)
 
 	for i := 0; i < len(tests_Add); i++ {
 		r, err := h.Add(tests_Add[i].key, tests_Add[i].data)
@@ -76,21 +76,21 @@ func TestHashTable_Add(t *testing.T)  {
 
 	/* 增常添加节点，并查找，删除 */
 	r, err := h.Add(111, 111)
-	AssertTrue(t, r)
-	AssertNil(t, err)
+	test.AssertTrue(t, r)
+	test.AssertNil(t, err)
 
 	data, err := h.Search(111)
-	AssertEqual(t, data, 111)
-	AssertNil(t, err)
+	test.AssertEqual(t, data, 111)
+	test.AssertNil(t, err)
 
 	r, err = h.Delete(111)
-	AssertTrue(t, r)
-	AssertNil(t, err)
+	test.AssertTrue(t, r)
+	test.AssertNil(t, err)
 
 	data, err = h.Search(111)
 	//t.Errorf("data(%v) err(%v)", ndata, nerr)
-	AssertNil(t, data)
-	AssertEqual(t, err.Error(), "not existed")
+	test.AssertNil(t, data)
+	test.AssertEqual(t, err.Error(), "not existed")
 
 
 }
